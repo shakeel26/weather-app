@@ -1,13 +1,13 @@
 import React from 'react';
-import Header from './components/Header';
+import FetchWeather from './components/FetchWeather';
 
 
 function App() {
-  return (
+    return (
     <div>
-      <Header />
+        <FetchWeather />
     </div>
-  );
+    )
 }
 
 export default App;
