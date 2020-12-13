@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import keys from '../keys'
 
 function WeatherFetch() {
+    const [city, setCity] = useState('Innsbruck')
     const [feels_like, setFeelsLike] = useState('');
     const [mainTemp, setMainTemp] = useState('');
     const [description, setDescription] = useState('');
@@ -9,7 +10,7 @@ function WeatherFetch() {
     const [iconID, setIconID] = useState('');
 
     useEffect(() => {
-        fetch(`${keys.BASE_URL}weather?q=Innsbruck&appid=${keys.API_KEY}&units=metric`
+        fetch(`${keys.BASE_URL}weather?q=${city}&appid=${keys.API_KEY}&units=metric`
         ).then((res) => res.json())
             .then((data) => {
                 console.log(data)
@@ -23,6 +24,7 @@ function WeatherFetch() {
 
     return (
         <>
+            <h1>{city} </h1>
             <img src='http://openweathermap.org/img/wn/10d@2x.png'/>
             <h1> Temperature: {mainTemp} &#x2103; </h1>
             <h2> Feels {feels_like} &#x2103;</h2>
