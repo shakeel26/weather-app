@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import keys from '../keys'
+import '../index.css'
 
 const WeatherFetch = () => {
     const [city, setCity] = useState('Innsbruck')
@@ -13,7 +14,7 @@ const WeatherFetch = () => {
         fetch(`${keys.BASE_URL}weather?q=${city}&appid=${keys.API_KEY}&units=metric`
         ).then((res) => res.json())
             .then((data) => {
-                console.log(data)
+//                console.log(data)
                 setFeelsLike(data.main.feels_like);
                 setMainTemp(data.main.temp);
                 setDescription(data.weather[0].description);
