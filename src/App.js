@@ -1,12 +1,11 @@
 import React from 'react';
 import FetchWeather from './components/FetchWeather';
 
-
 function App() {
     return (
-    <div>
+    <>
         <FetchWeather />
-    </div>
+    </>
     )
 }
 
