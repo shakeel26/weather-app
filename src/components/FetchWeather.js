@@ -13,23 +13,32 @@ function WeatherFetch() {
         fetch(`${keys.BASE_URL}weather?q=${city}&appid=${keys.API_KEY}&units=metric`
         ).then((res) => res.json())
             .then((data) => {
-                console.log(data)
-                setFeelsLike(~~data.main.feels_like);
-                setMainTemp(~~data.main.temp);
+                // console.log(data)
+                setFeelsLike(data.main.feels_like);
+                setMainTemp(data.main.temp);
                 setDescription(data.weather[0].description);
                 setMain(data.weather[0].main);
                 setIconID(data.weather[0].icon);
-            })
-    }, [])
+            }).catch(()=> {
+                alert('City name not Found')
+            });
+    }, [city])
+
+    const handleSubmit = (e) => {
+            if (e.key === 'Enter') {
+                setCity(e.target.value)
+            }
+        }
 
     return (
         <>
-            <h1>{city} </h1>
+            <input type="text" onKeyPress={handleSubmit}/>
+            <h1>{city.charAt(0).toUpperCase() + city.slice(1)} </h1>
             <img src='http://openweathermap.org/img/wn/10d@2x.png'/>
             <h1> Temperature: {mainTemp} &#x2103; </h1>
             <h2> Feels {feels_like} &#x2103;</h2>
             <h3> Looks {main}</h3>
-            <h4> Description: {description}</h4>
+            <h4> Description: {description.charAt(0).toUpperCase() + description.slice(1)}</h4>
         </>
     )
 }
