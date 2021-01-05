@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import {debounce} from 'lodash';
 import keys from '../keys'
 import '../index.css'
 
@@ -31,9 +32,16 @@ const WeatherFetch = () => {
         }
     }
 
+    const handleChange = debounce((e) => {
+//        if (e.key === 'Enter') {
+            setCity(e.target.value)
+  //      }
+    }, 2000)
+
     return (
         <div className='app'>
-            <input type="text" onKeyPress={handleSubmit}/>
+            {/*<input type="text" onKeyPress={handleSubmit}/>*/}
+            <input type="text" onChange={handleChange} onKeyPress={handleSubmit}/>
             <h1>{city.charAt(0).toUpperCase() + city.slice(1)} </h1>
             <img src={iconID}/>
             <h1> Temperature: {mainTemp} &#x2103; </h1>
